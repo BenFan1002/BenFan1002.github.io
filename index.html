@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random TV Episode Generator</title>
+</head>
+<body>
+
+	<h1>Random TV Episode Generator</h1>
+
+	<p>Click the button below to generate a random TV episode:</p>
+
+	<button onclick="generateEpisode()">Generate!</button>
+
+	<p id="episode"></p>
+
+	<script type="text/javascript">
+		
+		var series = {'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
+          'Friends(老友记)': [10,[24,24,25 ,24 ,25 ,24 ,24 ,18]],
+          'The Big Bang Theory(生活大爆炸)': [12,[17] + [23] *2 +[24]*9],
+          'Mom(极品老妈)': [8,[22]*6+[20]+[18]],
+          'How I Met Your Mother(老爸老妈恋爱史)': [9,[22]*2+[20]+[23]*6],
+          'Hot in Cleveland(燃情克利夫兰)': [6,[10]+[22]+[23]*4],
+          '2 Broke Girls(破产姐妹)': [6,[23]*3+[21]+[19]]};
+
+        function generateEpisode() {
+        	var keys = Object.keys(series);
+        	var randomKey = keys[Math.floor(Math.random()*keys.length)];
+        	var season = Math.floor(Math.random()*series[randomKey][0])+1;
+        	var episodeNums = series[randomKey][1];
+        	var episodeNum;
+			if (season > episodeNums.length) {
+				episodeNum = Math.floor(Math.random()*episodeNums[0])+1;
+			} else {
+        		episodesInSeason = episodeNums[season-1];
+        		if (episodesInSeason instanceof Array) {
+        			maxEpisodesInSeason = episodesInSeason.length;
+        			minEpisodesInSeason=episodesInSeason[minEpisodesInSeason];
+        		} else {
+        			maxEpisodesInSeason=episodesInSeason;
+        			minEpisodesInSeason=1;	
+        		}
+	        	
+	        	
+	        	console.log("max: "+ maxEpisodesInSeason);
+	        	console.log("min:" + minEpisodesInSeason);
+	            var randEpisodeNumber=Math.floor(Math.random()*(maxEpisodesInSeason-minEpisodesInSeason+1))+minEpisodesinSEason
+	            console.log(randEpisodeNumber)
+	             episodeNum=randEpisodeNumber
+	        }
+	        
+	        document.getElementById("episode").innerHTML=randomKey +" S"+season+"E"+episodeNUm;
+
+        }
+
+		
+		
+
+		
+		
+	
+
+    </script>
+
+
+</body>
+</html>
