@@ -1,0 +1,192 @@
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html>\r\n<head>\r\n\t<title>Random TV Episode Generator</title>\r\n</head>\r\n<body>\r\n\r\n\t<h1>Random TV Episode Generator</h1>\r\n\r\n\t<p>Click the button below to generate a random TV episode:</p>\r\n\r\n\t<button onclick=\"generateEpisode()\">Generate!</button>\r\n\r\n\t<p id=\"episode\"></p>\r\n\r\n\t<script type=\"text/javascript\">\r\n\r\n\t\tvar series = {'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],\r\n          'Friends(老友记)': [10,[24,24,25 ,24 ,25 ,24 ,24 ,18]],\r\n          'The Big Bang Theory(生活大爆炸)': [12,[17] + [23] *2 +[24]*9],\r\n          'Mom(极品老妈)': [8,[22]*6+[20]+[18]],\r\n          'How I Met Your Mother(老爸老妈恋爱史)': [9,[22]*2+[20]+[23]*6],\r\n          'Hot in Cleveland(燃情克利夫兰)': [6,[10]+[22]+[23]*4],\r\n          '2 Broke Girls(破产姐妹)': [6,[23]*3+[21]+[19]]};\r\n\r\n        function generateEpisode() {\r\n        \tvar keys = Object.keys(series);\r\n        \tvar randomKey = keys[Math.floor(Math.random()*keys.length)];\r\n        \tvar season = Math.floor(Math.random()*series[randomKey][0])+1;\r\n        \tvar episodeNums = series[randomKey][1];\r\n        \tvar episodeNum;\r\n\t\t\tif (season > episodeNums.length) {\r\n\t\t\t\tepisodeNum = Math.floor(Math.random()*episodeNums[0])+1;\r\n\t\t\t} else {\r\n        \t\tepisodesInSeason = episodeNums[season-1];\r\n        \t\tif (episodesInSeason instanceof Array) {\r\n        \t\t\tmaxEpisodesInSeason = episodesInSeason.length;\r\n        \t\t\tminEpisodesInSeason=episodesInSeason[minEpisodesInSeason];\r\n        \t\t} else {\r\n        \t\t\tmaxEpisodesInSeason=episodesInSeason;\r\n        \t\t\tminEpisodesInSeason=1;\r\n        \t\t}\r\n\r\n\r\n\t        \tconsole.log(\"max: \"+ maxEpisodesInSeason);\r\n\t        \tconsole.log(\"min:\" + minEpisodesInSeason);\r\n\t            var randEpisodeNumber=Math.floor(Math.random()*(maxEpisodesInSeason-minEpisodesInSeason+1))+minEpisodesinSEason\r\n\t            console.log(randEpisodeNumber)\r\n\t             episodeNum=randEpisodeNumber\r\n\t        }\r\n\r\n\t        document.getElementById(\"episode\").innerHTML=randomKey +\" S\"+season+\"E\"+episodeNUm;\r\n\r\n        }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    </script>\r\n\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.html b/index.html
+--- a/index.html	(revision 5a689bb6c5433e13442c5af80573f33a880216e3)
++++ b/index.html	(date 1678825157418)
+@@ -1,5 +1,7 @@
+ <!DOCTYPE html>
+-<html>
++<html lang="en">
++<meta charset="utf-8">
++
+ <head>
+ 	<title>Random TV Episode Generator</title>
+ </head>
+@@ -9,49 +11,37 @@
+ 
+ 	<p>Click the button below to generate a random TV episode:</p>
+ 
+-	<button onclick="generateEpisode()">Generate!</button>
++	<button onclick="randomEpisode()">Generate!</button>
+ 
+ 	<p id="episode"></p>
+ 
+ 	<script type="text/javascript">
+ 
+-		var series = {'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
+-          'Friends(老友记)': [10,[24,24,25 ,24 ,25 ,24 ,24 ,18]],
+-          'The Big Bang Theory(生活大爆炸)': [12,[17] + [23] *2 +[24]*9],
+-          'Mom(极品老妈)': [8,[22]*6+[20]+[18]],
+-          'How I Met Your Mother(老爸老妈恋爱史)': [9,[22]*2+[20]+[23]*6],
+-          'Hot in Cleveland(燃情克利夫兰)': [6,[10]+[22]+[23]*4],
+-          '2 Broke Girls(破产姐妹)': [6,[23]*3+[21]+[19]]};
++			const series = {
++				'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
++				'Friends(老友记)': [10, [24, 24, 25, 24, 25, 24, 24, 18]],
++				'The Big Bang Theory(生活大爆炸)': [12, [17] + [23] * 2 + [24] * 9],
++				'Mom(极品老妈)': [8, [22] * 6 + [20] + [18]],
++				'How I Met Your Mother(老爸老妈恋爱史)': [9, [22] * 2 + [20] + [23] * 6],
++				'Hot in Cleveland(燃情克利夫兰)': [6, [10] + [22] + [23] * 4],
++				'2 Broke Girls(破产姐妹)': [6, [23] * 3 + [21] + [19]]
++			};
++
+ 
+-        function generateEpisode() {
+-        	var keys = Object.keys(series);
+-        	var randomKey = keys[Math.floor(Math.random()*keys.length)];
+-        	var season = Math.floor(Math.random()*series[randomKey][0])+1;
+-        	var episodeNums = series[randomKey][1];
+-        	var episodeNum;
+-			if (season > episodeNums.length) {
+-				episodeNum = Math.floor(Math.random()*episodeNums[0])+1;
+-			} else {
+-        		episodesInSeason = episodeNums[season-1];
+-        		if (episodesInSeason instanceof Array) {
+-        			maxEpisodesInSeason = episodesInSeason.length;
+-        			minEpisodesInSeason=episodesInSeason[minEpisodesInSeason];
+-        		} else {
+-        			maxEpisodesInSeason=episodesInSeason;
+-        			minEpisodesInSeason=1;
+-        		}
++
++
++		function randomEpisode() {
++			let keys = Object.keys(series);
++			let name = keys[Math.floor(Math.random() * keys.length)]
++			let tup = series[name];
++			let season = Math.floor(Math.random() * tup[0]) + 1;
++			let episode = Math.floor(Math.random() * tup[1][season - 1]) + 1;
++			document.getElementById("episode").innerHTML = `${name} S${season}E${episode}`;
++		}
+ 
+ 
+-	        	console.log("max: "+ maxEpisodesInSeason);
+-	        	console.log("min:" + minEpisodesInSeason);
+-	            var randEpisodeNumber=Math.floor(Math.random()*(maxEpisodesInSeason-minEpisodesInSeason+1))+minEpisodesinSEason
+-	            console.log(randEpisodeNumber)
+-	             episodeNum=randEpisodeNumber
+-	        }
+ 
+-	        document.getElementById("episode").innerHTML=randomKey +" S"+season+"E"+episodeNUm;
+ 
+-        }
+ 
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"BenFan1002.github.io\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5a689bb6c5433e13442c5af80573f33a880216e3)
++++ b/.idea/workspace.xml	(date 1678825362736)
+@@ -1,6 +1,51 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="RunManager">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="cc1852a5-9754-4969-af8a-200c1a8f8232" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="HTML File" />
++      </list>
++    </option>
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectId" id="2N1FkGOsO4VmSHD6dFI6Oe2As9T" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/10944/OneDrive/文档/GitHub/BenFan1002.github.io&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  }
++}</component>
++  <component name="RunManager" selected="JavaScript Debug.index.html">
++    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BenFan1002.github.io/index.html" useBuiltInWebServerPort="true">
++      <method v="2" />
++    </configuration>
+     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="BenFan1002.github.io" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -23,5 +68,37 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JavaScript Debug.index.html" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="cc1852a5-9754-4969-af8a-200c1a8f8232" name="Changes" comment="" />
++      <created>1678823822282</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1678823822282</updated>
++      <workItem from="1678823823258" duration="565000" />
++      <workItem from="1678824416798" duration="936000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/main.py</url>
++          <line>8</line>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+ </project>
+\ No newline at end of file
