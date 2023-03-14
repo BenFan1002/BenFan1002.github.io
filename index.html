@@ -4,27 +4,41 @@
 
 <head>
 	<title>Random TV Episode Generator</title>
+	  <link rel="stylesheet" href="neumorphism.css">
+
 </head>
 <body>
+	<div class="container z-2">
+			<div class="row justify-content-center text-center pt-6">	<h1 class="display-2 mb-3">Random TV Episode Generator</h1>
 
-	<h1>Random TV Episode Generator</h1>
+	<p class="lead px-md-6 mb-5">Click the button below to generate a random TV episode</p>
 
-	<p>Click the button below to generate a random TV episode:</p>
+	</div>
 
-	<button onclick="randomEpisode()">Generate!</button>
+</div>
+		<div class="d-flex flex-column flex-wrap flex-md-row justify-content-md-center mb-5">
+			<a class="btn btn-primary mb-3 mb-lg-0 mr-3" onclick="randomEpisode()">Generate!</a>
 
-	<p id="episode"></p>
+
+	</div>
+	<div class="row justify-content-center">
+			<div class="alert alert-success shadow-inset">
+		<div style="text-align: center" id="episode"></d>
+	</div>
+	</div>
+
+
 
 	<script type="text/javascript">
 
 			const series = {
 				'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
-				'Friends(老友记)': [10, [24, 24, 25, 24, 25, 24, 24, 18]],
-				'The Big Bang Theory(生活大爆炸)': [12, [17] + [23] * 2 + [24] * 9],
-				'Mom(极品老妈)': [8, [22] * 6 + [20] + [18]],
-				'How I Met Your Mother(老爸老妈恋爱史)': [9, [22] * 2 + [20] + [23] * 6],
-				'Hot in Cleveland(燃情克利夫兰)': [6, [10] + [22] + [23] * 4],
-				'2 Broke Girls(破产姐妹)': [6, [23] * 3 + [21] + [19]]
+				'Friends(老友记)': [10, [24, 24, 25, 24, 24, 25, 24, 24, 24, 18]],
+				'The Big Bang Theory(生活大爆炸)': [12, [17, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24]],
+				'Mom(极品老妈)': [8, [22, 22, 22, 22, 22, 22, 20, 18]],
+				'How I Met Your Mother(老爸老妈恋爱史)': [9, [22, 22, 20, 24, 24, 24, 24, 24, 24]],
+				'Hot in Cleveland(燃情克利夫兰)': [6, [10, 22, 24, 24, 24, 24]],
+				'2 Broke Girls(破产姐妹)': [6, [24, 24, 24, 22, 22, 22]]
 			};
 
 
@@ -35,10 +49,10 @@
 			let name = keys[Math.floor(Math.random() * keys.length)]
 			let tup = series[name];
 			let season = Math.floor(Math.random() * tup[0]) + 1;
-			let episode = Math.floor(Math.random() * tup[1][season - 1]) + 1;
+			let episode = Math.floor(Math.random() * tup[1][season-1]) + 1;
 			document.getElementById("episode").innerHTML = `${name} S${season}E${episode}`;
 		}
-			
+
 
     </script>
 
