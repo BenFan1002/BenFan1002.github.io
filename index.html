@@ -22,9 +22,9 @@
 
 	</div>
 	<div class="row justify-content-center">
-			<div class="alert alert-success shadow-inset">
-		<div style="text-align: center" id="episode"></d>
-	</div>
+		<div id= "block" style="display: none" class="alert alert-success shadow-inset">
+			<div style="text-align: center" id="episode"></div>
+		</div>
 	</div>
 
 
@@ -51,6 +51,7 @@
 			let season = Math.floor(Math.random() * tup[0]) + 1;
 			let episode = Math.floor(Math.random() * tup[1][season-1]) + 1;
 			document.getElementById("episode").innerHTML = `${name} S${season}E${episode}`;
+			document.getElementById("block").style.display = "block";
 		}
 
 
