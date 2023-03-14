@@ -3,7 +3,6 @@
 <head>
 	<title>Random TV Episode Generator</title>
 </head>
-
 <body>
 
 	<h1>Random TV Episode Generator</h1>
@@ -15,10 +14,9 @@
 	<p id="episode"></p>
 
 	<script type="text/javascript">
-		
-        // Define the series data as an object
-        var series = {'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
-          'Friends(老友记)': [10,[24 ,25 ,24 ,25 ,24 ,24 ,18]],
+
+		var series = {'Modern Family(摩登家庭)': [11, [24, 24, 24, 24, 24, 24, 22, 22, 22, 22, 18]],
+          'Friends(老友记)': [10,[24,24,25 ,24 ,25 ,24 ,24 ,18]],
           'The Big Bang Theory(生活大爆炸)': [12,[17] + [23] *2 +[24]*9],
           'Mom(极品老妈)': [8,[22]*6+[20]+[18]],
           'How I Met Your Mother(老爸老妈恋爱史)': [9,[22]*2+[20]+[23]*6],
@@ -26,33 +24,41 @@
           '2 Broke Girls(破产姐妹)': [6,[23]*3+[21]+[19]]};
 
         function generateEpisode() {
-        	
         	var keys = Object.keys(series);
         	var randomKey = keys[Math.floor(Math.random()*keys.length)];
         	var season = Math.floor(Math.random()*series[randomKey][0])+1;
         	var episodeNums = series[randomKey][1];
-        	
+        	var episodeNum;
 			if (season > episodeNums.length) {
-				// If there is only one number of episodes for all seasons
-				maxEpisodesInSeason=episodeNums[0];
+				episodeNum = Math.floor(Math.random()*episodeNums[0])+1;
 			} else {
         		episodesInSeason = episodeNums[season-1];
         		if (episodesInSeason instanceof Array) {
         			maxEpisodesInSeason = episodesInSeason.length;
-        			minEpisodesInSeason=episodesInSeason[Math.min.apply(null,episodesInSeason)];
+        			minEpisodesInSeason=episodesInSeason[minEpisodesInSeason];
         		} else {
         			maxEpisodesInSeason=episodesInSeason;
-        			minEpisodesInSeason=1;	
+        			minEpisodesInSeason=1;
         		}
-	            var randEpisodeNumber=Math.floor(Math.random()*(maxEpisodesInSeason-minEpisodesinSEason+1))+minEpisdoesinSEason;
-	             episodeNum=randEpisodeNumber;
 
+
+	        	console.log("max: "+ maxEpisodesInSeason);
+	        	console.log("min:" + minEpisodesInSeason);
+	            var randEpisodeNumber=Math.floor(Math.random()*(maxEpisodesInSeason-minEpisodesInSeason+1))+minEpisodesinSEason
+	            console.log(randEpisodeNumber)
+	             episodeNum=randEpisodeNumber
 	        }
-	        
-	        // Display the result to the webpage
-	        document.getElementById("episode").innerHTML=randomKey +" S"+season+"E"+episodeNum;
+
+	        document.getElementById("episode").innerHTML=randomKey +" S"+season+"E"+episodeNUm;
 
         }
+
+
+
+
+
+
+
 
     </script>
 
