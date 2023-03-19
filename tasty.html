@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Recipe Search</h1>
+    <form>
+        <label for="search-input">Search for recipes:</label>
+        <input type="text" id="search-input" name="search-input">
+        <button type="submit">Search</button>
+    </form>
+    <div id="recipe-results"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+                let searchInput = $('#search-input').val();
+                let url = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20 &q=${searchInput}`;
+                searchRecipes(url);
+            });
+        });
+
+        function searchRecipes(url) {
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": url,
+                "method": "GET",
+                "headers": {
+                    "X-RapidAPI-Key": "25af54c4ecmsh4c292592ba14e97p1ed281jsn7d6876b49586",
+                    "X-RapidAPI-Host": "tasty.p.rapidapi.com"
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                displayResults(response);
+            });
+        }
+
+        function displayResults(response) {
+            let recipeResults = document.getElementById('recipe-results');
+            recipeResults.innerHTML = ""; // Clear any previous results
+            if(response.results.length > 0) {
+                response.results.forEach(recipe => {
+                    let recipeDiv = document.createElement('div');
+                    recipeDiv.innerHTML = `<h3 href="${recipe.beauty_url}">${recipe.name}</h3>`;
+                    recipeResults.appendChild(recipeDiv);
+
+                });
+            } else {
+                let errorDiv = document.createElement('div');
+                errorDiv.innerHTML = `<p>Error: No recipes found.</p>`;
+                recipeResults.appendChild(errorDiv);
+            }
+        }
+    </script>
+</body>
+</html>
